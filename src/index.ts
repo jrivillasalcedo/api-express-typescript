@@ -5,9 +5,9 @@ import cookieParse from "cookie-parser";
 import compression from "compression";
 import cors from "cors";
 import mongoose from "mongoose";
-
-// needed dependency for read .env file
 import dotenv from "dotenv";
+import router from "./router";
+
 dotenv.config();
 
 const app = express();
@@ -33,3 +33,5 @@ const MONGO_URL = `mongodb+srv://jrivillarepository:${password}@cluster0.3o0fslw
 mongoose.Promise = Promise;
 mongoose.connect(MONGO_URL);
 mongoose.connection.on("error", (error: Error) => console.log(error));
+
+app.use("/", router());
